@@ -1,0 +1,14 @@
+body {background-image: url(images/restaurant_icons.png);
+}
+
+header {
+    padding: 20px; 
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+    font-size: 35px; 
+    color: rgb(87, 84, 84);
+}
+
+#user-welcome{
+    font-size: 18px;
+    padding-top: 10px;
+}
