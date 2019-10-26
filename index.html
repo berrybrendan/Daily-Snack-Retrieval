@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type=text/css href="./style.css">
-    <title>DSR</title>
-  </head>
-  <body>
-    <header class="row deep-purple lighten-3 z-depth-2">
-      <div class="col s5 push-s1">Daily Snack Retriever!</div>
-      <div class="col s2 push-s5" id="user-welcome">Placeholder text!</div>
-    </header>
-    <div class="container">
-      <form action="#">
-        <div>
-        <label>
-          <input id="nut-allergy" type="checkbox" class="filled-in" checked="checked"/>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type=text/css href="./style.css">
+  <title>DSR</title>
+</head>
+
+<body>
+  <header class="row deep-purple lighten-3 z-depth-2">
+    <div class="col s5 push-s1">Daily Snack Retriever!</div>
+    <div class="col s2 push-s5" id="user-welcome">Placeholder text!</div>
+  </header>
+  <div class="container">
+    <form action="#">
+      <div>
+        <label for="nut-allergy">
+          <input id="nut-allergy" type="checkbox" class="filled-in" checked="checked" />
           <span>Nut Allergy</span>
-          </label>
-        </div>
-        <div>
-        <label>
-          <input id="shellfish-allergy" type="checkbox" class="filled-in" checked="checked"/>
+        </label>
+      </div>
+      <div>
+        <label for="shellfish-allergy">
+          <input id="shellfish-allergy" type="checkbox" class="filled-in" checked="checked" />
           <span>Shellfish Allergy</span>
         </label>
-        </div>
-        <div>
-        <label>
-          <input id="milk-allergy" type="checkbox" class="filled-in" checked="checked"/>
-          <span>Milk Allergy</span>
+      </div>
+      <div>
+        <label for="dairy-allergy">
+          <input id="dairy-allergy" type="checkbox" class="filled-in" checked="checked" />
+          <span>Dairy Allergy</span>
         </label>
-        </div>
-        <div>
-        <label>
-          <input id="wheat-allergy" type="checkbox" class="filled-in" checked="checked"/>
+      </div>
+      <div>
+        <label for="wheat-allergy">
+          <input id="wheat-allergy" type="checkbox" class="filled-in" checked="checked" />
           <span>Wheat Allergy</span>
         </label>
-        </div>
-        <div>
-        <label>
-          <input id="soy-allergy" type="checkbox" class="filled-in" checked="checked"/>
+      </div>
+      <div>
+        <label for="soy-allergy">
+          <input id="soy-allergy" type="checkbox" class="filled-in" checked="checked" />
           <span>Shellfish Allergy</span>
         </label>
-        </div>
-        <div>
-        <label>
-          <input id="fish-allergy" type="checkbox" class="filled-in" checked="checked"/>
+      </div>
+      <div>
+        <label for="fish-allergy">
+          <input id="fish-allergy" type="checkbox" class="filled-in" checked="checked" />
           <span>Fish Allergy</span>
         </label>
-        </div>
-        <div>
-        <label>
-          <input id="egg-allergy" type="checkbox" class="filled-in" checked="checked"/>
+      </div>
+      <div>
+        <label for="egg-allergy">
+          <input id="egg-allergy" type="checkbox" class="filled-in" checked="checked" />
           <span>Egg Allergy</span>
         </label>
-        </div>
-      </form>  
-    </div>
+      </div>
+    </form>
+  </div>
 
-    
-    <footer></footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    </script>
-  </body>
+
+  <footer></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="script.js">
+  </script>
+</body>
+
 </html>
