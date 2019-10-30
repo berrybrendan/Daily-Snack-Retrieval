@@ -47,74 +47,81 @@ var fishAllergyEl = $('#fish-allergy')
 //Add each part of the array separate from the queryURL 
 //this way, if one array item needs to be removed, it can be done with ease
 //the queryURL will be updated once our result button is pushed.
-var allergyURLStr = []
+var allergyURLArray = []
 
 nutAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[0])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[0])
+        console.log(allergyURLArray)
     }
     else {
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=tree-nut-free&health=peanut-free')
         console.log()
     }
 });
 dairyAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[1])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[1])
+        console.log(allergyURLArray)
     }
     else {
-        console.log(allergyURLStr)
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=dairy-free')
+        console.log(allergyURLArray)
         
     }
 });
 eggAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[2])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[2])
+        console.log(allergyURLArray)
     }
     else {
-        console.log(allergyURLStr)
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=egg-free')
+        console.log(allergyURLArray)
         
     }
 });
 shellfishAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[3])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[3])
+        console.log(allergyURLArray)
     }
     else {
-        console.log(allergyURLStr)
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=shellfish-free')
+        console.log(allergyURLArray)
         
     }
 });
 wheatAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[4])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[4])
+        console.log(allergyURLArray)
     }
     else {
-        console.log(allergyURLStr)
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=wheat-free')
+        console.log(allergyURLArray)
         
     }
 });
 soyAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[5])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[5])
+        console.log(allergyURLArray)
     }
     else {
-        console.log(allergyURLStr)
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=soy-free')
+        console.log(allergyURLArray)
         
     }
 });
 fishAllergyEl.change(function () {
     if ($(this).is(':checked')) {
-        allergyURLStr.push(qAllergyArray[6])
-        console.log(allergyURLStr)
+        allergyURLArray.push(qAllergyArray[6])
+        console.log(allergyURLArray)
     }
     else {
-        console.log(allergyURLStr)
+        allergyURLArray = allergyURLArray.filter(item => item !== '&health=fish-free')
+        console.log(allergyURLArray)
         
     }
 });
