@@ -13,64 +13,106 @@
     <div class="col s5 push-s1">Daily Snack Retriever!</div>
     <div class="col s2 push-s5" id="user-welcome">Placeholder text!</div>
   </header>
-  <div class="container">
+  <div class="container allergy-checkboxes">
     <form action="#">
-      <div>
+      <p>
         <label for="nut-allergy">
-          <input id="nut-allergy" type="checkbox" class="filled-in" checked="checked" value="nut-allergy" class="purple
-          "/>
+          <input id="nut-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Nut Allergy</span>
         </label>
-      </div>
-      <div>
+      </p>
+      <p>
         <label for="shellfish-allergy">
-          <input id="shellfish-allergy" type="checkbox" class="filled-in" checked="checked" value="shellfish-allergy"/>
+          <input id="shellfish-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Shellfish Allergy</span>
         </label>
-      </div>
-      <div>
+      </p>
+      <p>
         <label for="dairy-allergy">
-          <input id="dairy-allergy" type="checkbox" class="filled-in" checked="checked" value="milk-allergy" />
+          <input id="dairy-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Milk Allergy</span>
         </label>
-      </div>
-      <div>
+      </p>
+      <p>
         <label for="wheat-allergy">
-          <input id="wheat-allergy" type="checkbox" class="filled-in" checked="checked" value="wheat-allergy"/>
+          <input id="wheat-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Wheat Allergy</span>
         </label>
-      </div>
-      <div>
+      </p>
+      <p>
         <label for="soy-allergy">
-          <input id="soy-allergy" type="checkbox" class="filled-in" checked="checked" value="shellfish-allergy" />
+          <input id="soy-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Shellfish Allergy</span>
         </label>
-      </div>
-      <div>
+      </p>
+      <p>
         <label for="fish-allergy">
-          <input id="fish-allergy" type="checkbox" class="filled-in" checked="checked" value="fish-allergy" />
+          <input id="fish-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Fish Allergy</span>
         </label>
-      </div>
-      <div>
+      </p>
+      <p>
         <label for="egg-allergy">
-          <input id="egg-allergy" type="checkbox" class="filled-in" checked="checked" value="egg-allergy" />
+          <input id="egg-allergy" type="checkbox" class="filled-in" checked="checked"/>
           <span>Egg Allergy</span>
         </label>
-
-      <!-- Save Button -->
-      </div><a href="#" class="btn deep-purple">
-        <span>Save Preferences</span>
-      </a>
+      </p>
     </form>
   </div>
 
-  <div class="container">
-
-
+  <div class="container meal-type">
+    <div class="row">
+      <form action="#">
+        <div class="col s2">
+          <label for="balanced">
+            <input id="balanced" name="diet-preference" type="radio"/>
+            <span>Balanced Meal</span>
+          </label>
+        </div>
+        <div class="col s2">
+          <label for="high-protein">
+            <input id="high-protein" name="diet-preference" type="radio"/>
+            <span>High Protein Meal</span>
+          </label>
+        </div>
+        <div class="col s2">
+          <label for="high-fiber">
+            <input id="high-fiber" name="diet-preference" type="radio"/>
+            <span>High Fiber Meal</span>
+          </label>
+        </div>
+        <div class="col s2">
+          <label for="low-fat">
+            <input id="low-fat" name="diet-preference" type="radio"/>
+            <span>Low-Fat Meal</span>
+          </label>
+        </div>
+        <div class="col s2">
+          <label for="low-carb">
+            <input id="low-carb" name="diet-preference" type="radio"/>
+            <span>Low Carb Meal</span>
+          </label>
+        </div>
+        <div class="col s2">
+          <label for="low-sodium">
+            <input id="low-sodium" name="diet-preference" type="radio"/>
+            <span>Low Sodium Meal</span>
+          </label>
+        </div>
+      </form>
+    </div>  
   </div>
 
+  <!-- Save Button -->
+  <div class="container save-btn">
+    <button href="#" class="btn deep-purple col-s1 push-s5">
+      <span>Save Information</span>
+    </button>
+  </div>
 
+  <!-- Results -->
+  <div class="container results-container">
+  </div>
 
 
   <footer></footer>

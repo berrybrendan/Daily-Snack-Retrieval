@@ -32,6 +32,7 @@ $.ajax({
         console.log(element)
     });
     console.log(caloriesKiloCal, caloriesdaily)
+    console.log(resultLabel)
 })
 
 var defaultUnchecked = $('.filled-in').attr('checked', false)
@@ -43,10 +44,7 @@ var wheatAllergyEl = $('#wheat-allergy')
 var soyAllergyEl = $('#soy-allergy')
 var fishAllergyEl = $('#fish-allergy')
 
-
-//Add each part of the array separate from the queryURL 
-//this way, if one array item needs to be removed, it can be done with ease
-//the queryURL will be updated once our result button is pushed.
+//Empty array that will contain URL parameters depending on checked allergies
 var allergyURLArray = []
 
 nutAllergyEl.change(function () {
@@ -125,3 +123,33 @@ fishAllergyEl.change(function () {
         
     }
 });
+
+var balancedMealEl = document.getElementById('balanced')
+var balancedMeal = '&diet=balanced'
+var highProteinEl = document.getElementById('high-protein')
+var highProteinMeal = '&diet=high-protein'
+var highFiberEl = document.getElementById('high-fiber')
+var highFiberMeal = '&diet=high-fiber'
+var lowFatEl = document.getElementById('low-fat')
+var lowFatMeal = '&diet=low-fat'
+var lowCarbEl = document.getElementById('low-carb')
+var lowCarbMeal = '&diet=low-carb'
+var lowSodiumEl = document.getElementById('low-sodium')
+var lowSodiumMeal = '&diet=low-sodium'
+
+
+function mealPrefCheck(mealEl){
+    var isChecked = mealEl.checked
+    console.log(isChecked)
+}
+
+var resultsContainerEL = $(".results-container")
+for (i=0; i<5; i++){
+    var outerDiv = $("<div class='row'></div>")
+    var outerInnerDiv = $("<div class='col s12 m6></div>")
+    var styleDiv = $("<div class='card #fafafa grey lighten-5'></div>")
+    var contentDiv = $("<div class='card-content'><div>")
+    var cardImage = $("<img src=" + resultImageURL + ">")
+    var cardTitle = $("<span class='card-title'>" + resultLabel + "<span>")
+    var 
+}
