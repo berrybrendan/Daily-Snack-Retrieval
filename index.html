@@ -8,13 +8,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type=text/css href="./style.css">
 </head>
+
 <body>
   <header class="row deep-purple lighten-3 z-depth-2">
     <div class="col s5 push-s1">Daily Snack Retriever!</div>
     <div class="col s2 push-s5" id="user-welcome">Placeholder text!</div>
   </header>
+
+  <!-- Results -->
   <div class="container results-container">
   </div>
+
   <div class="container allergy-checkboxes">
     <div class="row">
     <form class="col s6" action="#">
@@ -61,7 +65,7 @@
         </label>
       </p>
     </form>
-  
+
     <div class="input-field col s6">
         Food Search Keyword: <input id="foodtype" type="text" name="foodtype">
         <br>
@@ -73,7 +77,7 @@
         </div>
       </div>
   </div>
-​
+
   <div class="container meal-type">
     <div class="row">
       <form action="#">
@@ -116,7 +120,7 @@
       </form>
     </div>
   </div>
-​
+
   <div class="container">
     <div class="row">
       <div class="input-field col s4">
@@ -129,23 +133,18 @@
       </div>
     </div>
   </div>
-​
-​
+
   <!-- Save Button -->
   <div class="container save-btn">
     <button id="save-info" class="btn deep-purple col-s1 push-s5">
       <span>Save Information</span>
     </button>
   </div>
-​
-  <!-- Results -->
 
-​
-​
   <footer></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="script.js">
   </script>
 </body>
-​
+
 </html>
