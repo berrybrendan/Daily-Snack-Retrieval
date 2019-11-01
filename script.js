@@ -296,10 +296,8 @@ $(".btn").on("click", function () {
 
 function getWeatherData(searchedCity) {
 
-    
     var APIKey = "1cc5557678da6e75998efa1634ff4271";
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
-
 
     $.ajax({
         url: queryURL,
@@ -319,6 +317,5 @@ function getWeatherData(searchedCity) {
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
             $(".tempF").text("Temperature: " + tempF);
         })
-    }
+}
 
-            

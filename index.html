@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>DSR</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type=text/css href="./style.css">
-  <title>DSR</title>
 </head>
 
 <body>
@@ -14,8 +15,14 @@
     <div class="col s5 push-s1">Daily Snack Retriever!</div>
     <div class="col s2 push-s5" id="user-welcome">Placeholder text!</div>
   </header>
+
+  <!-- Results -->
+  <div class="container results-container">
+  </div>
+
   <div class="container allergy-checkboxes">
-    <form action="#">
+    <div class="row">
+    <form class="col s6" action="#">
       <p>
         <label for="nut-allergy">
           <input id="nut-allergy" type="checkbox" class="filled-in" checked="checked" />
@@ -60,7 +67,20 @@
       </p>
     </form>
 
+<<<<<<< HEAD
     <button id="preferences" class="btn deep-purple"><span>Save Preferences</span></button>
+=======
+    <div class="input-field col s6">
+        Food Search Keyword: <input id="foodtype" type="text" name="foodtype">
+        <br>
+      </div>
+      <div class="container save-btn">
+          <button id='search' class="btn deep-purple col-s1 push-s5">
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+>>>>>>> 26fa984b44d7d552caddedae3296d958c73437bb
   </div>
 
   <div class="container meal-type">
@@ -116,17 +136,12 @@
         Last name: <input id="lastName" type="text" name="lname">
         <br>
       </div>
-      <div class="input-field col s4">
-        Food Search Keyword: <input id="foodtype" type="text" name="foodtype">
-        <br>
-      </div>
     </div>
   </div>
 
-
   <!-- Save Button -->
   <div class="container save-btn">
-    <button href="#" class="btn deep-purple col-s1 push-s5">
+    <button id="save-info" class="btn deep-purple col-s1 push-s5">
       <span>Save Information</span>
     </button>
   </div>
