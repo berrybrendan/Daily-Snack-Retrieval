@@ -261,9 +261,6 @@ function mealPrefCheck(mealEl){
 }
 
 
-
-
-
 function createCard() {
     var outerDiv = $("<div class='row'></div>")
     var outerInnerDiv = $("<div>")
