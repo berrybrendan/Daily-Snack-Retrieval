@@ -16,36 +16,6 @@ var resultLabel
 var resultHealthLabel 
 
 
-//var queryURL = 'https://api.edamam.com/search?q=' + qSearch + '&app_id=$' + appId + '&app_key=$' + appKey + '&from=0&to=1';
-
-var queryURL = 'https://api.edamam.com/search?q=' + qSearch + '&app_id=$' + appId + '&app_key=$' + appKey + '&from=0&to=1';
-
-$.ajax({
-    url: queryURL,
-    method: 'GET',
-}).then(function (response) {
-    var result = response.hits[0].recipe;
-    console.log(response.hits[0])
-    var resultIngredients = result.ingredientLines;
-    var resultInstructionsURL = result.url;
-    var resultImageURL = result.image;
-    var resultLabel = result.label;
-    var resultHealthLabel = result.healthLabels;
-    var nutri = result.digest;
-    var caloriesKiloCal = parseInt(result.totalNutrients.ENERC_KCAL.quantity);
-    var caloriesdaily = caloriesKiloCal / 20; //This is in percent
-    var fat = nutri[0];
-    var carbs = nutri[1];
-    var protein = nutri[2];
-    var cholestrol = nutri[3];
-    var sodium = nutri[4];
-    console.log(resultIngredients)
-    resultIngredients.forEach(function (element) {
-        console.log(element)
-    });
-    console.log(caloriesKiloCal, caloriesdaily)
-    console.log(resultLabel)
-})
 
 var nutAllergyEl = $('#nut-allergy')
 var dairyAllergyEl = $('#dairy-allergy')
@@ -136,7 +106,7 @@ fishAllergyEl.change(function () {
 });
 
 
-$('#preferences').on('click', function(){
+$('#save-info').on('click', function(){
     window.localStorage.setItem('allergy', JSON.stringify(allergyURLArray))
     console.log(window.localStorage.getItem('allergy'))
 })
@@ -186,7 +156,9 @@ if(localStorage.getItem('allergy') !== 'null'){
 
 
 
-// $('#search-button').on('click', function(){
+$('#search').on('click', function(event){
+    event.preventDefault();
+    qSearch= $('#foodtype').val()
     var queryURL = 'https://api.edamam.com/search?q=' + qSearch
     allergyURLArray.forEach(function(element){
         queryURL += element;
@@ -247,11 +219,7 @@ if(localStorage.getItem('allergy') !== 'null'){
                 var protein = nutri[2];
                 var cholestrol = nutri[3];
                 var sodium = nutri[4];
-                // console.log(resultIngredients)
-                resultIngredients.forEach(function (element) {
-                    // console.log(element)
-                });
-                // console.log(caloriesKiloCal, caloriesdaily)
+                createCard()
             }
            
         
@@ -259,7 +227,7 @@ if(localStorage.getItem('allergy') !== 'null'){
 
 
     })
-// })
+})
 var balancedMealEl = document.getElementById('balanced')
 var balancedMeal = '&diet=balanced'
 var highProteinEl = document.getElementById('high-protein')
@@ -280,12 +248,34 @@ function mealPrefCheck(mealEl){
 }
 
 var resultsContainerEL = $(".results-container")
-for (i=0; i<5; i++){
+
+
+
+function createCard() {
     var outerDiv = $("<div class='row'></div>")
-    var outerInnerDiv = $("<div class='col s12 m6></div>")
-    var styleDiv = $("<div class='card #fafafa grey lighten-5'></div>")
-    var contentDiv = $("<div class='card-content'><div>")
+    var outerInnerDiv = $("<div>")
+    outerInnerDiv.attr('class', 'col s12 m6')
+    var styleDiv = $("<div>")
+    styleDiv.attr('class', 'card #fafafa grey lighten-5')
+    var imageDiv = $("<div>")
+    imageDiv.attr('class', 'card-content')
     var cardImage = $("<img src=" + resultImageURL + ">")
     var cardTitle = $("<span class='card-title'>" + resultLabel + "<span>")
-     
+    var contentDiv = $("<div>")
+    contentDiv.attr('class', 'card-content')
+    var cardContent = $("<p>" + resultIngredients + "<p>")
+    var linkDiv = $("<div>")
+    linkDiv.attr('class', 'card-action')
+    var cardLink = $("<a href=" + resultInstructionsURL + ">Instructions</a>")
+    contentDiv.append(cardContent)
+    linkDiv.append(cardLink)
+    imageDiv.append(cardImage)
+    imageDiv.append(cardTitle)
+    styleDiv.append(imageDiv)
+    styleDiv.append(contentDiv)
+    styleDiv.append(linkDiv)
+    outerInnerDiv.append(styleDiv)
+    outerDiv.append(outerInnerDiv)
+    console.log(outerInnerDiv)
+    resultsContainerEL.prepend(outerDiv)
 }
