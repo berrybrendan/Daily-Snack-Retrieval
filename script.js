@@ -9,6 +9,13 @@ var qAllergyArray = ['&health=tree-nut-free&health=peanut-free',
 var fromQuery = '&from='
 var toQuery = '&to='
 
+var resultIngredients 
+var resultInstructionsURL 
+var resultImageURL 
+var resultLabel 
+var resultHealthLabel 
+
+
 //var queryURL = 'https://api.edamam.com/search?q=' + qSearch + '&app_id=$' + appId + '&app_key=$' + appKey + '&from=0&to=1';
 
 var queryURL = 'https://api.edamam.com/search?q=' + qSearch + '&app_id=$' + appId + '&app_key=$' + appKey + '&from=0&to=1';
@@ -228,10 +235,10 @@ if(localStorage.getItem('allergy') !== 'null'){
                 console.log('response')
                 console.log(response)
                 var resultIngredients = result.ingredientLines;
-                var resultInstructionsURL = result.url;
-                var resultImageURL = result.image;
-                var resultLabel = result.label;
-                var resultHealthLabel = result.healthLabels;
+                resultInstructionsURL = result.url;
+                resultImageURL = result.image;
+                resultLabel = result.label;
+                resultHealthLabel = result.healthLabels;
                 var nutri = result.digest;
                 var caloriesKiloCal = parseInt(result.totalNutrients.ENERC_KCAL.quantity);
                 var caloriesdaily = caloriesKiloCal / 20; //This is in percent
@@ -280,5 +287,5 @@ for (i=0; i<5; i++){
     var contentDiv = $("<div class='card-content'><div>")
     var cardImage = $("<img src=" + resultImageURL + ">")
     var cardTitle = $("<span class='card-title'>" + resultLabel + "<span>")
-    var 
+     
 }
