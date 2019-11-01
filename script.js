@@ -14,7 +14,16 @@ var resultInstructionsURL
 var resultImageURL 
 var resultLabel 
 var resultHealthLabel 
+var diet
 
+var balancedMealEl = document.getElementById('balanced')
+var highProteinEl = document.getElementById('high-protein')
+var highFiberEl = document.getElementById('high-fiber')
+var lowFatEl = document.getElementById('low-fat')
+var lowCarbEl = document.getElementById('low-carb')
+var lowSodiumEl = document.getElementById('low-sodium')
+var qMealTypeArray = ['&diet=balanced', '&diet=high-protein', '&diet=high-fiber', '&diet=low-fat', '&diet=low-carb', '&diet=low-sodium']
+var mealElArray = [balancedMealEl, highProteinEl, highFiberEl, lowFatEl, lowCarbEl, lowSodiumEl]
 
 
 var nutAllergyEl = $('#nut-allergy')
@@ -107,15 +116,9 @@ fishAllergyEl.change(function () {
 });
 
 
-$('#save-info').on('click', function(){
-    window.localStorage.setItem('allergy', JSON.stringify(allergyURLArray))
-    console.log(window.localStorage.getItem('allergy'))
-})
-
 var defaultChecked = $('.filled-in').attr('checked', false)
 
 if(localStorage.getItem('allergy') !== null){
-    
     var checker = JSON.parse(localStorage.getItem('allergy'))
     for(var i = 0; i< qAllergyArray.length; i++){
         // console.log(checker)
@@ -157,7 +160,28 @@ if(localStorage.getItem('allergy') !== null){
     }
 }
 
+if(localStorage.getItem('mealtype') !== null){
+    var checker = JSON.parse(localStorage.getItem('mealtype'))
+    for(var i = 0; i< mealElArray.length; i++){
+        if (qMealTypeArray[i] === checker){
+            mealElArray[i].setAttribute('checked', true)
+            diet = qMealTypeArray[i]
+        }
+    }
+}
 
+$('#save-info').on('click', function(){
+    window.localStorage.setItem('allergy', JSON.stringify(allergyURLArray))
+    console.log(window.localStorage.getItem('allergy'))
+    for(var i = 0; i< mealElArray.length; i++){
+        if (mealPrefCheck(mealElArray[i]) === true){
+            diet = qMealTypeArray[i]
+        }
+    }
+    window.localStorage.setItem('mealtype', JSON.stringify(diet))
+    console.log(window.localStorage.getItem('mealtype'))
+    window.localStorage.setItem('name', )
+})
 
 $('#search').on('click', function(event){
     event.preventDefault();
@@ -168,7 +192,7 @@ $('#search').on('click', function(event){
     allergyURLArray.forEach(function(element){
         queryURL += element;
     })
-    queryURL +='&app_id=$' + appId + '&app_key=$' + appKey;
+    queryURL += diet + '&app_id=$' + appId + '&app_key=$' + appKey;
     
     
     $.ajax({
@@ -225,31 +249,15 @@ $('#search').on('click', function(event){
                 var cholestrol = nutri[3];
                 var sodium = nutri[4];
                 createCard()
-            }
-           
-        
+            }   
         })
-
-
     })
 })
-var balancedMealEl = document.getElementById('balanced')
-var balancedMeal = '&diet=balanced'
-var highProteinEl = document.getElementById('high-protein')
-var highProteinMeal = '&diet=high-protein'
-var highFiberEl = document.getElementById('high-fiber')
-var highFiberMeal = '&diet=high-fiber'
-var lowFatEl = document.getElementById('low-fat')
-var lowFatMeal = '&diet=low-fat'
-var lowCarbEl = document.getElementById('low-carb')
-var lowCarbMeal = '&diet=low-carb'
-var lowSodiumEl = document.getElementById('low-sodium')
-var lowSodiumMeal = '&diet=low-sodium'
 
 
 function mealPrefCheck(mealEl){
     var isChecked = mealEl.checked
-    console.log(isChecked)
+    return isChecked
 }
 
 
