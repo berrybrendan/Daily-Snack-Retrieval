@@ -11,6 +11,34 @@ var toQuery = '&to='
 
 //var queryURL = 'https://api.edamam.com/search?q=' + qSearch + '&app_id=$' + appId + '&app_key=$' + appKey + '&from=0&to=1';
 
+var queryURL = 'https://api.edamam.com/search?q=' + qSearch + '&app_id=$' + appId + '&app_key=$' + appKey + '&from=0&to=1';
+
+$.ajax({
+    url: queryURL,
+    method: 'GET',
+}).then(function (response) {
+    var result = response.hits[0].recipe;
+    console.log(response.hits[0])
+    var resultIngredients = result.ingredientLines;
+    var resultInstructionsURL = result.url;
+    var resultImageURL = result.image;
+    var resultLabel = result.label;
+    var resultHealthLabel = result.healthLabels;
+    var nutri = result.digest;
+    var caloriesKiloCal = parseInt(result.totalNutrients.ENERC_KCAL.quantity);
+    var caloriesdaily = caloriesKiloCal / 20; //This is in percent
+    var fat = nutri[0];
+    var carbs = nutri[1];
+    var protein = nutri[2];
+    var cholestrol = nutri[3];
+    var sodium = nutri[4];
+    console.log(resultIngredients)
+    resultIngredients.forEach(function (element) {
+        console.log(element)
+    });
+    console.log(caloriesKiloCal, caloriesdaily)
+    console.log(resultLabel)
+})
 
 var nutAllergyEl = $('#nut-allergy')
 var dairyAllergyEl = $('#dairy-allergy')
@@ -20,10 +48,7 @@ var wheatAllergyEl = $('#wheat-allergy')
 var soyAllergyEl = $('#soy-allergy')
 var fishAllergyEl = $('#fish-allergy')
 
-
-//Add each part of the array separate from the queryURL 
-//this way, if one array item needs to be removed, it can be done with ease
-//the queryURL will be updated once our result button is pushed.
+//Empty array that will contain URL parameters depending on checked allergies
 var allergyURLArray = []
 
 nutAllergyEl.change(function () {
@@ -228,3 +253,32 @@ if(localStorage.getItem('allergy') !== 'null'){
 
     })
 // })
+var balancedMealEl = document.getElementById('balanced')
+var balancedMeal = '&diet=balanced'
+var highProteinEl = document.getElementById('high-protein')
+var highProteinMeal = '&diet=high-protein'
+var highFiberEl = document.getElementById('high-fiber')
+var highFiberMeal = '&diet=high-fiber'
+var lowFatEl = document.getElementById('low-fat')
+var lowFatMeal = '&diet=low-fat'
+var lowCarbEl = document.getElementById('low-carb')
+var lowCarbMeal = '&diet=low-carb'
+var lowSodiumEl = document.getElementById('low-sodium')
+var lowSodiumMeal = '&diet=low-sodium'
+
+
+function mealPrefCheck(mealEl){
+    var isChecked = mealEl.checked
+    console.log(isChecked)
+}
+
+var resultsContainerEL = $(".results-container")
+for (i=0; i<5; i++){
+    var outerDiv = $("<div class='row'></div>")
+    var outerInnerDiv = $("<div class='col s12 m6></div>")
+    var styleDiv = $("<div class='card #fafafa grey lighten-5'></div>")
+    var contentDiv = $("<div class='card-content'><div>")
+    var cardImage = $("<img src=" + resultImageURL + ">")
+    var cardTitle = $("<span class='card-title'>" + resultLabel + "<span>")
+    var 
+}

@@ -7,6 +7,9 @@ header {
     font-size: 35px; 
     color: rgb(87, 84, 84);
 }
+.container{
+    padding-top: 20px;
+}
 
 #user-welcome{
     font-size: 18px;
