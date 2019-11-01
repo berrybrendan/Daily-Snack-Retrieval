@@ -24,6 +24,7 @@ var shellfishAllergyEl = $('#shellfish-allergy')
 var wheatAllergyEl = $('#wheat-allergy')
 var soyAllergyEl = $('#soy-allergy')
 var fishAllergyEl = $('#fish-allergy')
+var resultsContainerEL = $(".results-container")
 
 //Empty array that will contain URL parameters depending on checked allergies
 var allergyURLArray = []
@@ -111,8 +112,10 @@ $('#save-info').on('click', function(){
     console.log(window.localStorage.getItem('allergy'))
 })
 
-if(localStorage.getItem('allergy') !== 'null'){
-    var defaultChecked = $('.filled-in').attr('checked', false)
+var defaultChecked = $('.filled-in').attr('checked', false)
+
+if(localStorage.getItem('allergy') !== null){
+    
     var checker = JSON.parse(localStorage.getItem('allergy'))
     for(var i = 0; i< qAllergyArray.length; i++){
         // console.log(checker)
@@ -158,7 +161,9 @@ if(localStorage.getItem('allergy') !== 'null'){
 
 $('#search').on('click', function(event){
     event.preventDefault();
+    resultsContainerEL.html('');
     qSearch= $('#foodtype').val()
+    console.log(qSearch)
     var queryURL = 'https://api.edamam.com/search?q=' + qSearch
     allergyURLArray.forEach(function(element){
         queryURL += element;
@@ -206,7 +211,7 @@ $('#search').on('click', function(event){
                 var result = response.hits[randNumber].recipe;
                 console.log('response')
                 console.log(response)
-                var resultIngredients = result.ingredientLines;
+                resultIngredients = result.ingredientLines;
                 resultInstructionsURL = result.url;
                 resultImageURL = result.image;
                 resultLabel = result.label;
@@ -247,7 +252,7 @@ function mealPrefCheck(mealEl){
     console.log(isChecked)
 }
 
-var resultsContainerEL = $(".results-container")
+
 
 
 
@@ -261,9 +266,13 @@ function createCard() {
     imageDiv.attr('class', 'card-content')
     var cardImage = $("<img src=" + resultImageURL + ">")
     var cardTitle = $("<span class='card-title'>" + resultLabel + "<span>")
-    var contentDiv = $("<div>")
+    var contentDiv = $("<ul>")
     contentDiv.attr('class', 'card-content')
-    var cardContent = $("<p>" + resultIngredients + "<p>")
+    for(var i=0; i<resultIngredients.length; i++){
+        var cardContent = $('<li>' + resultIngredients[i] + '</li>')
+        contentDiv.append(cardContent)
+    }
+    //var cardContent = $("<p>" + resultIngredients + "<p>")
     var linkDiv = $("<div>")
     linkDiv.attr('class', 'card-action')
     var cardLink = $("<a href=" + resultInstructionsURL + ">Instructions</a>")
