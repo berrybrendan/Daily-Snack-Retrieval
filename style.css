@@ -21,3 +21,7 @@ footer {
     font-size: 18px;
     padding-top: 10px;
 }
+
+.card {
+    width:500px;
+}
