@@ -180,7 +180,7 @@ $('#save-info').on('click', function(){
     }
     window.localStorage.setItem('mealtype', JSON.stringify(diet))
     console.log(window.localStorage.getItem('mealtype'))
-    window.localStorage.setItem('name', )
+    //window.localStorage.setItem('name', )
 })
 
 $('#search').on('click', function(event){
@@ -293,32 +293,32 @@ function createCard() {
     console.log(outerInnerDiv)
     resultsContainerEL.prepend(outerDiv)
 }
-$(".btn").on("click", function () {
-    var searchValue = $("#searchValue").val();
-    getWeatherData(searchValue);
-})
+// $(".btn").on("click", function () {
+//     var searchValue = $("#searchValue").val();
+//     getWeatherData(searchValue);
+// })
 
-function getWeatherData(searchedCity) {
-  
-    var APIKey = "1cc5557678da6e75998efa1634ff4271";
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
+// function getWeatherData(searchedCity) {
 
-    $.ajax({
-        url: queryURL,
-        type: "GET",
-        dataType: "json"
-    })
-        // We store all of the retrieved data inside of an object called "response"
-        .then(function (response) {
-            console.log(response)
-            // Transfer content to HTML
-            $(".city").text(response.name);
-            $(".tempF").text("Temperature (F) " + response.main.temp);
-            $(".humidity").text("Humidity: " + response.main.humidity);
-            $(".wind").text("Wind Speed: " + response.wind.speed);
+//     var APIKey = "1cc5557678da6e75998efa1634ff4271";
+//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
 
-            // Converts the temp to Kelvin with the below formula
-            var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-            $(".tempF").text("Temperature: " + tempF);
-        })
-}
+//     $.ajax({
+//         url: queryURL,
+//         type: "GET",
+//         dataType: "json"
+//     })
+//         // We store all of the retrieved data inside of an object called "response"
+//         .then(function (response) {
+//             console.log(response)
+//             // Transfer content to HTML
+//             $(".city").text(response.name);
+//             $(".tempF").text("Temperature (F) " + response.main.temp);
+//             $(".humidity").text("Humidity: " + response.main.humidity);
+//             $(".wind").text("Wind Speed: " + response.wind.speed);
+
+//             // Converts the temp to Kelvin with the below formula
+//             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+//             $(".tempF").text("Temperature: " + tempF);
+//         })
+// }
