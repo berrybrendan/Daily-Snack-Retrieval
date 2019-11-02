@@ -16,6 +16,8 @@ var resultLabel
 var resultHealthLabel 
 var diet
 
+var nameInput = document.getElementById('nameInput').value
+console.log(nameInput)
 var balancedMealEl = document.getElementById('balanced')
 var highProteinEl = document.getElementById('high-protein')
 var highFiberEl = document.getElementById('high-fiber')
@@ -180,7 +182,8 @@ $('#save-info').on('click', function(){
     }
     window.localStorage.setItem('mealtype', JSON.stringify(diet))
     console.log(window.localStorage.getItem('mealtype'))
-    //window.localStorage.setItem('name', )
+    window.localStorage.setItem('name', nameInput)
+    console.log(window.localStorage.getItem('name'))
 })
 
 $('#search').on('click', function(event){
@@ -306,7 +309,6 @@ function createCard() {
 // })
 
 // function getWeatherData(searchedCity) {
-<<<<<<< HEAD
 
 //     var APIKey = "1cc5557678da6e75998efa1634ff4271";
 //     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
@@ -325,26 +327,6 @@ function createCard() {
 //             $(".humidity").text("Humidity: " + response.main.humidity);
 //             $(".wind").text("Wind Speed: " + response.wind.speed);
 
-=======
-  
-//     var APIKey = "1cc5557678da6e75998efa1634ff4271";
-//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
-
-//     $.ajax({
-//         url: queryURL,
-//         type: "GET",
-//         dataType: "json"
-//     })
-//         // We store all of the retrieved data inside of an object called "response"
-//         .then(function (response) {
-//             console.log(response)
-//             // Transfer content to HTML
-//             $(".city").text(response.name);
-//             $(".tempF").text("Temperature (F) " + response.main.temp);
-//             $(".humidity").text("Humidity: " + response.main.humidity);
-//             $(".wind").text("Wind Speed: " + response.wind.speed);
-
->>>>>>> e85716f0b926aaf50dd79a60bb31a90db15b2ee2
 //             // Converts the temp to Kelvin with the below formula
 //             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 //             $(".tempF").text("Temperature: " + tempF);
