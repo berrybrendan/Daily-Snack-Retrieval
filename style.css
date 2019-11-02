@@ -8,6 +8,11 @@ header {
     font-size: 35px; 
     color: rgb(87, 84, 84);
 }
+
+footer {
+    padding:25px;
+}
+
 .container{
     padding-top: 20px;
 }

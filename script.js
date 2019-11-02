@@ -195,8 +195,6 @@ $('#save-info').on('click', function(){
     window.localStorage.setItem('username', nameUser)
     nameWelcome.text('Welcome back ' + nameUser + "!")
     console.log(window.localStorage.getItem('username'))
-    console.log(nameUser)
-    console.log(qMealTypeArray)
 
 })
 
@@ -284,7 +282,7 @@ function createCard() {
     var outerInnerDiv = $("<div>")
     outerInnerDiv.attr('class', 'col s12 m6')
     var styleDiv = $("<div>")
-    styleDiv.attr('class', 'card #fafafa grey lighten-5')
+    styleDiv.attr('class', 'card #fafafa grey lighten-5 col')
     var imageDiv = $("<div>")
     imageDiv.attr('class', 'card-content')
     var cardImage = $("<img src=" + resultImageURL + ">")
@@ -394,30 +392,19 @@ function getWeatherData(searchedCity) {
                     url: queryURL,
                     method: 'GET'
                 }).then(function(response){
-
-                    for(var i=0; i<1; i++){
-                        randNumber = Math.floor(Math.random() * rangeNumber);
-                        console.log(randNumber)
-                        var result = response.hits[randNumber].recipe;
-                        console.log('response')
-                        console.log(response)
-                        resultIngredients = result.ingredientLines;
-                        resultInstructionsURL = result.url;
-                        resultImageURL = result.image;
-                        resultLabel = result.label;
-                        resultHealthLabel = result.healthLabels;
-                        var nutri = result.digest;
-                        var caloriesKiloCal = parseInt(result.totalNutrients.ENERC_KCAL.quantity);
-                        var caloriesdaily = caloriesKiloCal / 20; //This is in percent
-                        var fat = nutri[0];
-                        var carbs = nutri[1];
-                        var protein = nutri[2];
-                        var cholestrol = nutri[3];
-                        var sodium = nutri[4];
-                        createCard()
-                    }   
+                    randNumber = Math.floor(Math.random() * rangeNumber);
+                    console.log(randNumber)
+                    var result = response.hits[randNumber].recipe;
+                    console.log('response')
+                    console.log(response)
+                    resultIngredients = result.ingredientLines;
+                    resultInstructionsURL = result.url;
+                    resultImageURL = result.image;
+                    resultLabel = result.label;
+                    resultHealthLabel = result.healthLabels;
+                    createCard()   
                 })
             })
 
         })
-}
+    }
