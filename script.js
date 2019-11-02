@@ -189,6 +189,7 @@ $('#save-info').on('click', function(){
     window.localStorage.setItem('username', JSON.stringify(nameInput))
     console.log(window.localStorage.getItem('username'))
     console.log(nameInput)
+
 })
 
 $('#search').on('click', function(event){
