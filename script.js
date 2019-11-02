@@ -16,6 +16,7 @@ var resultLabel
 var resultHealthLabel 
 var diet
 
+var nameInput = document.getElementById('name-input').value;
 var balancedMealEl = document.getElementById('balanced')
 var highProteinEl = document.getElementById('high-protein')
 var highFiberEl = document.getElementById('high-fiber')
@@ -25,7 +26,7 @@ var lowSodiumEl = document.getElementById('low-sodium')
 var qMealTypeArray = ['&diet=balanced', '&diet=high-protein', '&diet=high-fiber', '&diet=low-fat', '&diet=low-carb', '&diet=low-sodium']
 var mealElArray = [balancedMealEl, highProteinEl, highFiberEl, lowFatEl, lowCarbEl, lowSodiumEl]
 
-
+var nameWelcome = $('#user-welcome')
 var nutAllergyEl = $('#nut-allergy')
 var dairyAllergyEl = $('#dairy-allergy')
 var eggAllergyEl = $('#egg-allergy')
@@ -170,6 +171,11 @@ if(localStorage.getItem('mealtype') !== null){
     }
 }
 
+if(localStorage.getItem('username') !== null){
+    var welcome = window.localStorage.getItem('username')
+    nameWelcome.html('Welcome back ' + welcome + "!")
+}
+
 $('#save-info').on('click', function(){
     window.localStorage.setItem('allergy', JSON.stringify(allergyURLArray))
     console.log(window.localStorage.getItem('allergy'))
@@ -180,7 +186,10 @@ $('#save-info').on('click', function(){
     }
     window.localStorage.setItem('mealtype', JSON.stringify(diet))
     console.log(window.localStorage.getItem('mealtype'))
-    //window.localStorage.setItem('name', )
+    window.localStorage.setItem('username', JSON.stringify(nameInput))
+    console.log(window.localStorage.getItem('username'))
+    console.log(nameInput)
+
 })
 
 $('#search').on('click', function(event){
@@ -306,7 +315,7 @@ function createCard() {
 // })
 
 // function getWeatherData(searchedCity) {
-  
+
 //     var APIKey = "1cc5557678da6e75998efa1634ff4271";
 //     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
 
