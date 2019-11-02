@@ -21,6 +21,7 @@
   </div>
 
   <div class="container allergy-checkboxes">
+      <div class="row"><h5>Allergies</h5></div>
     <div class="row">
     <form class="col s6" action="#">
       <p>
@@ -67,26 +68,62 @@
       </p>
     </form>
 
+    <!-- Searh field -->
     <div class="input-field col s6">
-        Food Search Keyword: <input id="foodtype" type="text" name="foodtype">
-        <br>
-      </div>
-      <div class="container save-btn">
-          <button id='search' class="btn deep-purple col-s1 push-s5">
+        Food Search Keyword:
+      <div class="row">
+         
+        <input id="foodtype" type="text" name="foodtype" class="col s8">
+        
+      
+      <div class="col s4 save-btn">
+          <button id='search' class="btn deep-purple">
             <span>Search</span>
           </button>
         </div>
       </div>
+      <br>
+      Food Suggestion by Zipcode: 
+      <div class="row">
+        <input id="zipcode" type="text" name="zipcode" class="col s8">
+
+      <div class="col s4 zip-btn">
+          <button id='get-lucky' class="btn deep-purple">
+            <span>Get Lucky</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+  <!-- Weather Field -->  
+
+
+
   </div>
 
+  
+
+
+
   <div class="container meal-type">
+    <div class="row"><h5>Diets</h5></div>
     <div class="row">
       <form action="#">
         <div class="col s2">
+          <div class="row">
           <label for="balanced">
             <input id="balanced" name="diet-preference" type="radio" />
             <span>Balanced Meal</span>
           </label>
+        </div>
+          <div class="row">
+              <label for="none">
+                <input id="none" name="diet-preference" type="radio" />
+                <span>None</span>
+              </label>
+            </div>
         </div>
         <div class="col s2">
           <label for="high-protein">
@@ -118,6 +155,7 @@
             <span>Low Sodium Meal</span>
           </label>
         </div>
+        
       </form>
     </div>
   </div>
@@ -125,7 +163,7 @@
   <div class="container">
     <div class="row">
       <div class="input-field col s4">
-        Enter your name: <input id="nameInput" type="text" name="name">
+        Enter your name: <input id="name-input" type="text" name="name">
         <br>
       </div>
     </div>

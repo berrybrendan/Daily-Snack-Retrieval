@@ -14,20 +14,21 @@ var resultInstructionsURL
 var resultImageURL 
 var resultLabel 
 var resultHealthLabel 
-var diet
+var diet='';
 
-var nameInput = document.getElementById('nameInput').value
-console.log(nameInput)
+var nameInput = $('#name-input');
+var nameUser = '';
 var balancedMealEl = document.getElementById('balanced')
 var highProteinEl = document.getElementById('high-protein')
 var highFiberEl = document.getElementById('high-fiber')
 var lowFatEl = document.getElementById('low-fat')
 var lowCarbEl = document.getElementById('low-carb')
 var lowSodiumEl = document.getElementById('low-sodium')
-var qMealTypeArray = ['&diet=balanced', '&diet=high-protein', '&diet=high-fiber', '&diet=low-fat', '&diet=low-carb', '&diet=low-sodium']
-var mealElArray = [balancedMealEl, highProteinEl, highFiberEl, lowFatEl, lowCarbEl, lowSodiumEl]
+var noneEl = document.getElementById('none')
+var qMealTypeArray = ['&diet=balanced', '&diet=high-protein', '&diet=high-fiber', '&diet=low-fat', '&diet=low-carb', '&diet=low-sodium', '']
+var mealElArray = [balancedMealEl, highProteinEl, highFiberEl, lowFatEl, lowCarbEl, lowSodiumEl, noneEl]
 
-
+var nameWelcome = $('#user-welcome')
 var nutAllergyEl = $('#nut-allergy')
 var dairyAllergyEl = $('#dairy-allergy')
 var eggAllergyEl = $('#egg-allergy')
@@ -36,6 +37,8 @@ var wheatAllergyEl = $('#wheat-allergy')
 var soyAllergyEl = $('#soy-allergy')
 var fishAllergyEl = $('#fish-allergy')
 var resultsContainerEL = $(".results-container")
+
+var weatherKeyword =''
 
 //Empty array that will contain URL parameters depending on checked allergies
 var allergyURLArray = []
@@ -117,7 +120,7 @@ fishAllergyEl.change(function () {
     }
 });
 
-
+/////////////////////////////////////////////////////////Checks for previous stored allergies
 var defaultChecked = $('.filled-in').attr('checked', false)
 
 if(localStorage.getItem('allergy') !== null){
@@ -172,6 +175,12 @@ if(localStorage.getItem('mealtype') !== null){
     }
 }
 
+if(localStorage.getItem('username') !== null){
+    var welcome = window.localStorage.getItem('username')
+    nameWelcome.text('Welcome back ' + welcome + "!")
+}
+
+////////////////////////////////////////SAVE BUTTTON
 $('#save-info').on('click', function(){
     window.localStorage.setItem('allergy', JSON.stringify(allergyURLArray))
     console.log(window.localStorage.getItem('allergy'))
@@ -182,15 +191,20 @@ $('#save-info').on('click', function(){
     }
     window.localStorage.setItem('mealtype', JSON.stringify(diet))
     console.log(window.localStorage.getItem('mealtype'))
-    window.localStorage.setItem('name', nameInput)
-    console.log(window.localStorage.getItem('name'))
+    nameUser = nameInput.val();
+    window.localStorage.setItem('username', nameUser)
+    nameWelcome.text('Welcome back ' + nameUser + "!")
+    console.log(window.localStorage.getItem('username'))
+    console.log(nameUser)
+    console.log(qMealTypeArray)
+
 })
 
+///////////////////////////////////////SEARCH BUTTON
 $('#search').on('click', function(event){
     event.preventDefault();
     resultsContainerEL.html('');
     qSearch= $('#foodtype').val()
-    console.log(qSearch)
     var queryURL = 'https://api.edamam.com/search?q=' + qSearch
     allergyURLArray.forEach(function(element){
         queryURL += element;
@@ -203,9 +217,9 @@ $('#search').on('click', function(event){
         method: 'GET',
     }).then(function (list) {
         var totalNumber = list.count
-        // if(totalNumber>100){
-        //     totalNumber = 100
-        // }
+        if(totalNumber>9940){
+            totalNumber = 9940
+        }
         var randNumber = Math.floor(Math.random() * totalNumber);
         var toNumber = randNumber+50;
         var fromNumber = randNumber-50;
@@ -221,17 +235,12 @@ $('#search').on('click', function(event){
                 toNumber=totalNumber;
             }
         } 
-        
-        //var randNumber = Math.floor(Math.random() * totalNumber);
         var rangeNumber = toNumber-fromNumber-1;
         
 
 
-        //var toNumber = randNumber ++;
         queryURL += fromQuery + fromNumber + toQuery + toNumber;
-        // console.log(queryURL)
-        // console.log('here')
-        // console.log(list)
+
         $.ajax({
             url: queryURL,
             method: 'GET'
@@ -239,8 +248,7 @@ $('#search').on('click', function(event){
 
             for(var i=0; i<5; i++){
                 randNumber = Math.floor(Math.random() * rangeNumber);
-                // console.log(queryURL)
-                // console.log(totalNumber)
+
                 console.log(randNumber)
                 var result = response.hits[randNumber].recipe;
                 console.log('response')
@@ -287,7 +295,6 @@ function createCard() {
         var cardContent = $('<li>' + resultIngredients[i] + '</li>')
         contentDiv.append(cardContent)
     }
-    //var cardContent = $("<p>" + resultIngredients + "<p>")
     var linkDiv = $("<div>")
     linkDiv.attr('class', 'card-action')
     var cardLink = $("<a href=" + resultInstructionsURL + ">Instructions</a>")
@@ -303,32 +310,114 @@ function createCard() {
     console.log(outerInnerDiv)
     resultsContainerEL.prepend(outerDiv)
 }
-// $(".btn").on("click", function () {
-//     var searchValue = $("#searchValue").val();
-//     getWeatherData(searchValue);
-// })
 
-// function getWeatherData(searchedCity) {
+//====================================Get Lucky BUTTON==========
+$("#get-lucky").on("click", function () {
+    event.preventDefault();
+    var searchValue = $("#zipcode").val();
+    if(searchValue === null){
+        return
+    }
+    getWeatherData(searchValue);
+})
 
-//     var APIKey = "1cc5557678da6e75998efa1634ff4271";
-//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
+function getWeatherData(searchedCity) {
 
-//     $.ajax({
-//         url: queryURL,
-//         type: "GET",
-//         dataType: "json"
-//     })
-//         // We store all of the retrieved data inside of an object called "response"
-//         .then(function (response) {
-//             console.log(response)
-//             // Transfer content to HTML
-//             $(".city").text(response.name);
-//             $(".tempF").text("Temperature (F) " + response.main.temp);
-//             $(".humidity").text("Humidity: " + response.main.humidity);
-//             $(".wind").text("Wind Speed: " + response.wind.speed);
+    var APIKey = "1cc5557678da6e75998efa1634ff4271";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + searchedCity + "&units=imperial&appid=" + APIKey;
 
-//             // Converts the temp to Kelvin with the below formula
-//             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-//             $(".tempF").text("Temperature: " + tempF);
-//         })
-// }
+    $.ajax({
+        url: queryURL,
+        type: "GET"
+    })
+        // We store all of the retrieved data inside of an object called "response"
+        .then(function (response) {
+            console.log(response)
+            var tempNow = response.main.temp
+            if(tempNow < 32){
+                weatherKeyword = 'hot chocolate'
+            }
+            if(tempNow >= 32 && tempNow < 50){
+                weatherKeyword = 'soup'
+            }
+            if(tempNow>=50 && tempNow < 75){
+                weatherKeyword = 'hot sandwich'
+            }
+            if(tempNow>=75){
+                weatherKeyword = 'bbq'
+            }
+
+
+
+            resultsContainerEL.html('');
+            var queryURL = 'https://api.edamam.com/search?q=' + weatherKeyword;
+            console.log(weatherKeyword)
+            
+            allergyURLArray.forEach(function(element){
+                queryURL += element;
+            })
+
+            queryURL += diet + '&app_id=$' + appId + '&app_key=$' + appKey;
+            
+            
+            $.ajax({
+                url: queryURL,
+                method: 'GET',
+            }).then(function (list) {
+                var totalNumber = list.count
+                if(totalNumber>9940){
+                    totalNumber = 9940
+                }
+                var randNumber = Math.floor(Math.random() * totalNumber);
+                var toNumber = randNumber+50;
+                var fromNumber = randNumber-50;
+                randNumber = Math.floor(Math.random() * 100);
+                if(toNumber>totalNumber){
+                    toNumber=totalNumber;
+                    fromNumber= totalNumber -100;
+                }
+                if(fromNumber<0){
+                    fromNumber=0;
+                    toNumber=100;
+                    if(toNumber>totalNumber){
+                        toNumber=totalNumber;
+                    }
+                } 
+                
+                var rangeNumber = toNumber-fromNumber-1;
+                
+
+
+                queryURL += fromQuery + fromNumber + toQuery + toNumber;
+
+                $.ajax({
+                    url: queryURL,
+                    method: 'GET'
+                }).then(function(response){
+
+                    for(var i=0; i<1; i++){
+                        randNumber = Math.floor(Math.random() * rangeNumber);
+                        console.log(randNumber)
+                        var result = response.hits[randNumber].recipe;
+                        console.log('response')
+                        console.log(response)
+                        resultIngredients = result.ingredientLines;
+                        resultInstructionsURL = result.url;
+                        resultImageURL = result.image;
+                        resultLabel = result.label;
+                        resultHealthLabel = result.healthLabels;
+                        var nutri = result.digest;
+                        var caloriesKiloCal = parseInt(result.totalNutrients.ENERC_KCAL.quantity);
+                        var caloriesdaily = caloriesKiloCal / 20; //This is in percent
+                        var fat = nutri[0];
+                        var carbs = nutri[1];
+                        var protein = nutri[2];
+                        var cholestrol = nutri[3];
+                        var sodium = nutri[4];
+                        createCard()
+                    }   
+                })
+            })
+
+        })
+}
