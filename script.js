@@ -199,7 +199,7 @@ $('#search').on('click', function(event){
         url: queryURL,
         method: 'GET',
     }).then(function (list) {
-        var totalNumber = list.count-1
+        var totalNumber = list.count
         // if(totalNumber>100){
         //     totalNumber = 100
         // }
@@ -214,7 +214,14 @@ $('#search').on('click', function(event){
         if(fromNumber<0){
             fromNumber=0;
             toNumber=100;
-        }
+            if(toNumber>totalNumber){
+                toNumber=totalNumber;
+            }
+        } 
+        
+        //var randNumber = Math.floor(Math.random() * totalNumber);
+        var rangeNumber = toNumber-fromNumber-1;
+        
 
 
         //var toNumber = randNumber ++;
@@ -228,7 +235,7 @@ $('#search').on('click', function(event){
         }).then(function(response){
 
             for(var i=0; i<5; i++){
-                randNumber = Math.floor(Math.random() * 100);
+                randNumber = Math.floor(Math.random() * rangeNumber);
                 // console.log(queryURL)
                 // console.log(totalNumber)
                 console.log(randNumber)
@@ -299,6 +306,7 @@ function createCard() {
 // })
 
 // function getWeatherData(searchedCity) {
+<<<<<<< HEAD
 
 //     var APIKey = "1cc5557678da6e75998efa1634ff4271";
 //     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
@@ -317,6 +325,26 @@ function createCard() {
 //             $(".humidity").text("Humidity: " + response.main.humidity);
 //             $(".wind").text("Wind Speed: " + response.wind.speed);
 
+=======
+  
+//     var APIKey = "1cc5557678da6e75998efa1634ff4271";
+//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&appid=" + APIKey;
+
+//     $.ajax({
+//         url: queryURL,
+//         type: "GET",
+//         dataType: "json"
+//     })
+//         // We store all of the retrieved data inside of an object called "response"
+//         .then(function (response) {
+//             console.log(response)
+//             // Transfer content to HTML
+//             $(".city").text(response.name);
+//             $(".tempF").text("Temperature (F) " + response.main.temp);
+//             $(".humidity").text("Humidity: " + response.main.humidity);
+//             $(".wind").text("Wind Speed: " + response.wind.speed);
+
+>>>>>>> e85716f0b926aaf50dd79a60bb31a90db15b2ee2
 //             // Converts the temp to Kelvin with the below formula
 //             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 //             $(".tempF").text("Temperature: " + tempF);
